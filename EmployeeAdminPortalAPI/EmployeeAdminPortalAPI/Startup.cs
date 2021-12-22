@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EmployeeAdminPortalAPI.DataConnection;
+using EmployeeAdminPortalAPI.DataMapperRepositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,6 +28,12 @@ namespace EmployeeAdminPortalAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddDbContext<EmployeeAdminContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("EmployeeAdminPortalDb")));
+
+            // Dependecy Injection in .net core for api - Inversed injection to api controller
+            services.AddScoped<IEmployeeRepository, SqlEmployeeRepository>();
+            services.AddAutoMapper(typeof(Startup).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

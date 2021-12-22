@@ -5,4 +5,33 @@
   </PropertyGroup>
 
 
+  <ItemGroup>
+    <None Remove="DataModels\" />
+    <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
+    <None Remove="Microsoft.EntityFrameworkCore.Tools" />
+    <None Remove="DataConnection\" />
+    <None Remove="Migrations\" />
+    <None Remove="DataMapperRepositories\" />
+    <None Remove="DomainModels\" />
+    <None Remove="AutoMapper" />
+    <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+    <None Remove="Profiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DataModels\" />
+    <Folder Include="DataConnection\" />
+    <Folder Include="Migrations\" />
+    <Folder Include="DataMapperRepositories\" />
+    <Folder Include="DomainModels\" />
+    <Folder Include="Profiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.8">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+  </ItemGroup>
 </Project>
