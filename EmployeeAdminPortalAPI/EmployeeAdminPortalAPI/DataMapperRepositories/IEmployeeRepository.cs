@@ -8,5 +8,6 @@ namespace EmployeeAdminPortalAPI.DataMapperRepositories
     public interface IEmployeeRepository
     {
         Task<List<Employee>> GetEmployees();
+        Task<Employee> GetEmployee(int Id);
     }
 }

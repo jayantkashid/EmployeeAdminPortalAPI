@@ -20,5 +20,10 @@ namespace EmployeeAdminPortalAPI.DataMapperRepositories
         {
             return await context.Employee.Include(nameof(Designation)).Include(nameof(Address)).ToListAsync();
         }
+
+        public async Task<Employee> GetEmployee(int Id)
+        {
+            return await context.Employee.Include(nameof(Designation)).Include(nameof(Address)).FirstOrDefaultAsync(x => x.Id == Id);
+        }
     }
 }

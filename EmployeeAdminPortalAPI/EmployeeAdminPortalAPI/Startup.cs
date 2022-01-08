@@ -27,6 +27,12 @@ namespace EmployeeAdminPortalAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Adding CORS in app for angular app requests
+            services.AddCors((options)=> {
+                options.AddPolicy("angularAppRequest", (builder) => {
+                    builder.WithOrigins("http://localhost:4200").AllowAnyHeader().WithMethods("GET","POST","PUT","DELETE").WithExposedHeaders();
+                });
+            });
             services.AddControllers();
             services.AddDbContext<EmployeeAdminContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("EmployeeAdminPortalDb")));
@@ -45,6 +51,9 @@ namespace EmployeeAdminPortalAPI
             }
 
             app.UseRouting();
+
+            //adding CORS in application
+            app.UseCors("angularAppRequest");
 
             app.UseAuthorization();
 

@@ -67,5 +67,14 @@ namespace EmployeeAdminPortalAPI.Controllers
             */
             return Ok(mapper.Map<List<Employee>>(employees));
         }
+
+        // GET: single Employee
+        [HttpGet]
+        [Route("[controller]/{Id}")]
+        public async Task<IActionResult> GetEmployee(int Id)
+        {
+            var employee = await employeeRepository.GetEmployee(Id);
+            return Ok(mapper.Map<Employee>(employee));
+        }
     }
 }
